@@ -1,0 +1,35 @@
+
+<div class="card-section">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <div class="card-box p-3">
+        <form #chequeBookForm="ngForm">
+
+          <div class="form-group">
+            <label >{{fieldTitle['date']}}</label>
+            <p-calendar appendTo="body" dateFormat="dd/mm/yy" [(ngModel)]="chequeLog.statusDate" name="statusDate"
+              [readonlyInput]="true" [showIcon]="true" [style]="{ width: '100%' }">
+            </p-calendar>
+          </div>
+
+          <div class="form-group">
+            <label >{{fieldTitle['note']}}</label>
+            <input type="text" name="note" class="form-control" inputValidator [(ngModel)]="chequeLog.note"
+              placeholder="{{fieldTitle['note']}}">
+          </div>
+
+          <div class="form-group mt-2 mb-0">
+            <div class="form-row d-flex justify-content-center">
+              <button type="button" class="btn btn-sm btn-success" [disabled]="!chequeBookForm.dirty"
+                (click)="updateStatus(chequeBookForm)">
+                 {{fieldTitle['ok']}}
+              </button>
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<section class="address-picker">
+  <div class="container">
+      <form #addressPickerForm="ngForm" autocomplete="off" [addValidators]="validationMsgObj"
+          validationMessage="addressPickerValidateModel">
+          <div class="address-box">
+              <div class="map-box" *ngIf="isShowMap">
+                  <google-map width="100%" [center]="center" [zoom]="zoom" [draggable]="true"
+                      (mapClick)="onClickMap($event)">
+                      <map-marker [options]="marker" [draggable]="true"></map-marker>
+                  </google-map>
+              </div>
+              <div class="address-input">
+                  <div class="row d-flex justify-content-center" *ngIf="isShowMap">
+                      <div class="col-lg-10 col-sm-12">
+                          <h4 class="mt-2 mb-2">{{fieldTitle['usercurrentselectedgoogleaddress']}}<span class="ni-sup"></span></h4>
+                          <input class="form-control" type="text" (keydown.enter)="$event.preventDefault()"
+                              inputValidator autocorrect="off" autocapitalize="off"
+                              spellcheck="off" [(ngModel)]="addressPickerModel.mapAddress" id="mapAddress"
+                              name="mapAddress" placeholder="{{fieldTitle['usercurrentselectedgoogleaddress']}}">
+                          <!-- <div class="d-flex" *ngIf="!isShowMapAddressInput">
+                              <img src="../../../assets/images/icons/location.svg" alt="map" />
+                              <h5>{{addressPickerModel.mapAddress}}</h5>
+                          </div> -->
+                      </div>
+                      <!-- <div class="col-lg-4 col-sm-12">
+                          <a href="javascript:void(0)" class="btn-change" (click)="onClickChange()">Change</a>
+                      </div> -->
+                  </div>
+                  <div class="row d-flex justify-content-center">
+                      <div class="col-lg-10 col-sm-12">
+                          <h4 class="mt-4 mb-2">{{fieldTitle['pleasetypeyouraddressindetails']}}<span class="ni-sup"></span></h4>
+                          <input class="form-control" type="text" appOskInput autocomplete="off" inputValidator
+                              [(ngModel)]="addressPickerModel.address" name="address" placeholder="{{fieldTitle['typeaddresshere']}}">
+                      </div>
+                  </div>
+                  <div class="row d-flex justify-content-center">
+                      <div class="col-lg-10 col-sm-12">
+                          <button type="button" (click)="onSubmit(addressPickerForm)" [disabled]="!addressPickerForm.dirty" class="btn btn-success mt-4"> {{fieldTitle['confirmlocation']}}</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </form>
+  </div>
+</section>
